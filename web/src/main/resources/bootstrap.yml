@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    config:
+      uri: http://config.acme.com
+      failFast: true
+      name: acme-loan-entitlement
+      profile: dev
+      label: develop
+
+---
+
+spring:
+  profiles: test
+  cloud:
+    config:
+      profile: test
+
+---
+
+spring:
+  profiles: prod
+  cloud:
+    config:
+      profile: prod
