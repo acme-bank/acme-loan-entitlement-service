@@ -44,7 +44,7 @@ public class KafkaHelper {
         return config;
     }
 
-    public <T> Consumed<String, T> cosumedWith(Class<T> clazz) {
+    public <T> Consumed<String, T> consumedWith(Class<T> clazz) {
         return Consumed.with(Serdes.String(), jsonSerde(clazz));
     }
 

@@ -1,21 +1,23 @@
-package com.acme.bank.loan.entitlement.service.rule;
+package com.acme.bank.loan.entitlement.service.service;
 
 import com.acme.bank.loan.entitlement.domain.event.EnrichLoanEvent;
+import com.acme.bank.loan.entitlement.service.rule.Outcome;
+import com.acme.bank.loan.entitlement.service.rule.Rule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
-public class RuleEngine {
+@Service
+public class RuleService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RuleEngine.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RuleService.class);
     private final List<Rule> rules;
 
     @Autowired
-    public RuleEngine(List<Rule> rules) {
+    public RuleService(List<Rule> rules) {
         this.rules = rules;
     }
 

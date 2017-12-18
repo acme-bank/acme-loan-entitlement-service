@@ -7,7 +7,7 @@ import com.acme.bank.loan.entitlement.domain.event.PendingLoanEvent;
 import com.acme.bank.loan.entitlement.domain.event.RejectLoanEvent;
 import com.acme.bank.loan.entitlement.service.helper.KafkaHelper;
 import com.acme.bank.loan.entitlement.service.rule.Outcome;
-import com.acme.bank.loan.entitlement.service.rule.RuleEngine;
+import com.acme.bank.loan.entitlement.service.service.RuleService;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -34,19 +34,19 @@ public class EnrichLoanKafkaStream {
     private KafkaStreams streams;
     private final KafkaHelper kafkaHelper;
     private final ConversionService conversionService;
-    private final RuleEngine ruleEngine;
+    private final RuleService ruleService;
 
     @Autowired
     public EnrichLoanKafkaStream(@Value("${spring.application.name}") String applicationName,
                                  final AcmeProperties acmeProperties,
                                  final KafkaHelper kafkaHelper,
                                  final ConversionService conversionService,
-                                 final RuleEngine ruleEngine) {
+                                 final RuleService ruleService) {
         this.applicationName = applicationName;
         this.acmeProperties = acmeProperties;
         this.kafkaHelper = kafkaHelper;
         this.conversionService = conversionService;
-        this.ruleEngine = ruleEngine;
+        this.ruleService = ruleService;
     }
 
     @PostConstruct
@@ -55,7 +55,7 @@ public class EnrichLoanKafkaStream {
 
         StreamsBuilder streamBuilder = new StreamsBuilder();
         KStream<String, EnrichLoanEvent>[] streamBranches = streamBuilder
-                .stream(topics.getEnrichLoan(), kafkaHelper.cosumedWith(EnrichLoanEvent.class))
+                .stream(topics.getEnrichLoan(), kafkaHelper.consumedWith(EnrichLoanEvent.class))
                 .branch(this::entitleLoan, this::pendingLoan, this::rejectLoan);
 
         send(streamBranches[0], EntitleLoanEvent.class, topics.getEntitleLoan());
@@ -71,11 +71,11 @@ public class EnrichLoanKafkaStream {
 
         LOGGER.info("Received event with key {} on topic {}", event.getUuid(), topics.getEnrichLoan());
 
-        return Outcome.ENTITLED.equals(ruleEngine.evaluate(event));
+        return Outcome.ENTITLED.equals(ruleService.evaluate(event));
     }
 
     private boolean pendingLoan(String key, EnrichLoanEvent event) { // NOSONAR
-        return Outcome.PENDING.equals(ruleEngine.evaluate(event));
+        return Outcome.PENDING.equals(ruleService.evaluate(event));
     }
 
     private boolean rejectLoan(String key, EnrichLoanEvent event) { // NOSONAR
