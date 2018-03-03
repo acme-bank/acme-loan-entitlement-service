@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  acme_loan_entitlement:
+    build:
+      context: .
+      args:
+        APPLICATION_NAME: acme-loan-entitlement
+    image: docker.acme.com/acme-loan-entitlement:latest
+    container_name: acme_loan_entitlement_01
+    hostname: loan-entitlement
+    domainname: acme.com
+    ports:
+      - 8004:8080
+    networks:
+      acme:
+
+networks:
+  acme:
+    external:
+      name: acme

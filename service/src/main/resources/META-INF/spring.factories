@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.acme.bank.loan.entitlement.service.config.ServiceAutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.acme.bank.loan.service.config.ServiceAutoConfig

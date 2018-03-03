@@ -40,10 +40,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
 
         <!-- Jackson -->
         <dependency>
@@ -97,7 +93,8 @@
                             <additionalProperties>
                                 <build.number>${build.number}</build.number>
                                 <build.scm.revision>${build.revision}</build.scm.revision>
-                                <build.scm.revision.url>${project.scm.url}/commits/${build.revision}</build.scm.revision.url>
+                                <build.scm.revision.url>${project.scm.url}/commits/${build.revision}
+                                </build.scm.revision.url>
                             </additionalProperties>
                         </configuration>
                     </execution>

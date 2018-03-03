@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.acme.bank.loan.entitlement.domain.config.DomainAutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.acme.bank.loan.domain.config.DomainAutoConfig
