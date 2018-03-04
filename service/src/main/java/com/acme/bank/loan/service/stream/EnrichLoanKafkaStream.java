@@ -61,7 +61,7 @@ public class EnrichLoanKafkaStream {
     }
 
     private boolean entitleLoan(String key, EnrichLoanEvent event) {
-        LOGGER.info("Received event with key {} on topic {}", event.getUuid(), KafkaTopic.ENRICHED_LOANS.getTopicName());
+        LOGGER.info("Received event with key {} on topic {}", event.getEventId(), KafkaTopic.ENRICHED_LOANS.getTopicName());
 
         return Outcome.ENTITLED.equals(ruleService.evaluate(event));
     }

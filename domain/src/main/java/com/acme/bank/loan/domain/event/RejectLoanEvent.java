@@ -5,24 +5,16 @@ import java.util.UUID;
 
 public class RejectLoanEvent {
 
-    private UUID uuid;
-    private ZonedDateTime rejectedTimestamp;
+    private UUID eventId;
     private String details;
+    private ZonedDateTime rejectedTimestamp;
 
-    public UUID getUuid() {
-        return uuid;
+    public UUID getEventId() {
+        return eventId;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public ZonedDateTime getRejectedTimestamp() {
-        return rejectedTimestamp;
-    }
-
-    public void setRejectedTimestamp(ZonedDateTime rejectedTimestamp) {
-        this.rejectedTimestamp = rejectedTimestamp;
+    public void setEventId(UUID eventId) {
+        this.eventId = eventId;
     }
 
     public String getDetails() {
@@ -31,5 +23,13 @@ public class RejectLoanEvent {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public ZonedDateTime getRejectedTimestamp() {
+        return rejectedTimestamp;
+    }
+
+    public void setRejectedTimestamp(ZonedDateTime rejectedTimestamp) {
+        this.rejectedTimestamp = rejectedTimestamp;
     }
 }

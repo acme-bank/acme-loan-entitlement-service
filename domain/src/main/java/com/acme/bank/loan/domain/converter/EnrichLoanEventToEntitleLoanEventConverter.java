@@ -12,7 +12,7 @@ public class EnrichLoanEventToEntitleLoanEventConverter extends AbstractConverte
     @Override
     public EntitleLoanEvent convert(EnrichLoanEvent enrichLoanEvent) {
         EntitleLoanEvent entitleLoanEvent = new EntitleLoanEvent();
-        entitleLoanEvent.setUuid(enrichLoanEvent.getUuid());
+        entitleLoanEvent.setEventId(enrichLoanEvent.getEventId());
         entitleLoanEvent.setEntitledTimestamp(ZonedDateTime.now());
         return entitleLoanEvent;
     }

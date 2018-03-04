@@ -12,8 +12,9 @@ public class EnrichLoanEventToPendingLoanEventConverter extends AbstractConverte
     @Override
     public PendingLoanEvent convert(EnrichLoanEvent enrichLoanEvent) {
         PendingLoanEvent pendingLoanEvent = new PendingLoanEvent();
-        pendingLoanEvent.setUuid(enrichLoanEvent.getUuid());
-        pendingLoanEvent.setPersonalId(enrichLoanEvent.getPersonalId());
+        pendingLoanEvent.setEventId(enrichLoanEvent.getEventId());
+        pendingLoanEvent.setPersonId(enrichLoanEvent.getPersonId());
+        pendingLoanEvent.setSsn(enrichLoanEvent.getSsn());
         pendingLoanEvent.setBirthDate(enrichLoanEvent.getBirthDate());
         pendingLoanEvent.setGender(enrichLoanEvent.getGender());
         pendingLoanEvent.setFirstName(enrichLoanEvent.getFirstName());
